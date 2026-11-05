@@ -1,1 +1,134 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Local Chat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <!-- Authentication Screen -->
+  <div id="auth-screen" class="screen">
+    <div class="auth-box">
+      <h2>💬 SecureChat</h2>
+      
+      <!-- Login Section -->
+      <div id="login-section">
+        <h3>Login</h3>
+        <input type="email" id="login-email" placeholder="Email Address" required>
+        <input type="password" id="login-password" placeholder="Password" required>
+        <button id="login-btn">Login</button>
+        <p>Don't have an account? <span class="link" id="show-signup">Sign up here</span></p>
+      </div>
+      
+      <!-- Sign Up Section -->
+      <div id="signup-section" class="hidden">
+        <h3>Sign Up</h3>
+        <p class="hint">⚠️ Please enter your <strong>REAL NAME</strong>. No numbers are allowed.</p>
+        <input type="text" id="signup-name" placeholder="Full Name (e.g. John Doe)" required>
+        <input type="email" id="signup-email" placeholder="Email Address" required>
+        <input type="password" id="signup-password" placeholder="Password" required>
+        <button id="signup-btn">Create Account</button>
+        <p>Already have an account? <span class="link" id="show-login">Login here</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Chat Application -->
+  <div id="chat-screen" class="screen hidden">
+    
+    <!-- Sidebar / Group Switching -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <div>
+          <span id="current-user-name" class="user-display">User</span>
+          <br><small id="current-user-email">email@example.com</small>
+        </div>
+        <button id="logout-btn" class="icon-btn" title="Logout">🚪</button>
+      </div>
+      
+      <button id="new-chat-btn" class="primary-btn">➕ Create Group / Chat</button>
+      
+      <div class="sidebar-title">Your Chats</div>
+      <div id="chat-list" class="chat-list">
+        <!-- Chat group buttons will generate here -->
+      </div>
+    </div>
+
+    <!-- Main Chat Window -->
+    <div class="chat-main">
+      
+      <div class="chat-header">
+        <h3 id="active-chat-title">Select a chat to start messaging</h3>
+      </div>
+      
+      <!-- Messages Display -->
+      <div class="chat-messages" id="chat-messages">
+        <!-- Texts will appear here -->
+      </div>
+
+      <!-- Commands Popup Menu -->
+      <div id="command-menu" class="command-menu hidden">
+        <div class="cmd-header">Available Commands</div>
+        <ul id="command-list">
+          <li data-cmd="/clear">
+            <strong>/clear</strong> <span>Deletes your previously sent text</span>
+          </li>
+          <li data-cmd="/clearall">
+            <strong>/clearall</strong> <span>Wipes all history in this specific chat</span>
+          </li>
+          <li data-cmd="/effect neon">
+            <strong>/effect neon</strong> <span>Gives the chat window a glowing neon effect</span>
+          </li>
+          <li data-cmd="/effect matrix">
+            <strong>/effect matrix</strong> <span>Applies a hacker matrix green text effect</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Text Editing Bar -->
+      <div class="chat-input-container hidden" id="chat-input-container">
+        <button id="cmd-toggle-btn" class="icon-btn" title="Show/Hide Commands">⚡</button>
+        <form id="message-form">
+          <input type="text" id="message-input" placeholder="Type a message or /command..." autocomplete="off">
+          <button type="submit" id="send-btn">Send</button>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Create Chat Modal (Hidden by default) -->
+  <div id="create-chat-modal" class="modal hidden">
+    <div class="modal-content">
+      <h3>Start a New Chat</h3>
+      <p class="modal-desc">Search for users to add to your group.</p>
+      
+      <input type="text" id="user-search" placeholder="Type name or email (e.g., bot1)...">
+      
+      <!-- Autocomplete Dropdown List -->
+      <div id="search-results" class="search-results">
+        <!-- Results format: 
+             <div class="result-item">
+               <span class="res-name">Bot 1</span>
+               <span class="res-email">bot1@bots.com</span>
+             </div> 
+        -->
+      </div>
+      
+      <div id="selected-users" class="selected-users">
+        <!-- Users you click will show up here as tags -->
+      </div>
+      
+      <div class="modal-actions">
+        <button id="cancel-create-chat" class="cancel-btn">Cancel</button>
+        <button id="confirm-create-chat" class="primary-btn">Create Chat</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
